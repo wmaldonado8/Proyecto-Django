@@ -1,0 +1,96 @@
+{% extends "../index.html" %}
+
+
+{% block body %}
+
+    <nav>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <div class="nav-wrapper z-depth-2 ff9100 orange accent-3">
+        <a href="#!" class="brand-logo">Clientes</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="nuevo"><i class="material-icons left">playlist_add</i>Nuevo</a></li>
+        </ul>
+    </div>
+    </nav>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card z-depth-3">
+            <div class="card-content">
+                <span class="card-title">{{mensaje}}</span>
+                    <th ><input onchange="recibir()" id="txt_buscar" type="text" style="width: 200px" placeholder="Ingrese cedula " value=""></th>
+                    <th ><a id="boton_buscar" style="background-color: #4e555b; width: 50px; height: 50px; font-size: 25px" class="btn btn-success"><i style="font-size: 20px" class="fab fa-sistrix"></i></a></th>
+                </table>
+        <script>
+            function recibir() {
+                var valor = document.getElementById("txt_buscar").value;
+                document.getElementById("boton_buscar").href = 'buscar?txt_buscar='+valor+'';
+            }
+        </script>
+
+                </div>
+                <table class="highlight responsive-table">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cédula</th>
+                            <th>Apellidos</th>
+                            <th>Nombres</th>
+                            <th>Genero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in clientes %}
+                        <tr>
+
+                            <td>
+
+
+                                <a href="editar?cedula={{item.cedula}}"><i class="material-icons left">edit</i></a>
+                                <a href="eliminar?cedula={{item.cedula}}"><i class="material-icons left">delete_sweep</i></a>
+
+                            </td>
+                            <td>{{item.cedula}}</td>
+                            <td>{{item.apellidos}}</td>
+                            <td>{{item.nombres}}</td>
+                            {% if item.genero == 'm' %}
+                            <td>Masculino</td>
+                            {% else %}
+                            <td>Femenino</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-action">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+    var eliminar = function(id){
+        $.ajax({
+            url: "eliminar",
+            method: "POST",
+            data: { id : id }
+        }).success(function( msj ) {
+            if(msj == "eliminado"){
+
+            }
+            if(msj == "no eliminado"){
+
+            }
+            if(msj == "perdido"){
+
+            }
+        });
+    }
+</script>
+{% endblock %}

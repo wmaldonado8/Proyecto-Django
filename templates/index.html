@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--Import materialize.css-->
+        {% load staticfiles %}
+        <link type="text/css" rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}"  media="screen,projection"/>
+        <link rel="icon" type="image/png" href="{% static '/img/avatar.jpg' %}" />
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        {% block css %}
+            <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+        {% endblock %}
+    </head>
+
+    <body style="background-image:url('{% static '/img/back.jpg'%}')">
+
+
+     <header class="header-area">
+     <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 d-flex justify-content-between">
+                        <!-- Logo Area -->
+                        <div class="logo">
+                            <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                        </div>
+
+                        <!-- Top Contact Info -->
+                        <div class="top-contact-info d-flex align-items-center">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Av Universitaria, Loja, CA"><img src="{% static 'img/core-img/placeholder.png' %}" alt=""> <span>Av Universitaria, Loja, CA</span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="wmaldonado506@gmail.com"><img src="{% static 'img/core-img/message.png' %}" alt=""> <span>wmaldonado506@gmail.com</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Navbar Area -->
+        <div class="credit-main-menu" id="sticker">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="creditNav">
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                               
+
+                                <ul>
+
+                                    <li><a href="/clientes">Clientes</a></li>
+                                    <li><a href="/clientes/cuentas">Cuentas</a></li>
+
+
+                                    {% if user.is_authenticated %}
+                                        <li><a href="{% url 'logout' %}">Salir</a></li>
+                                    {% endif %}
+
+                                </ul>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="contact">
+                            <a href="#"><img src="{% static 'img/core-img/call2.png' %}" alt=""> +800 49 900 900</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+         <ul class="sidenav" id="mobile-demo">
+             <li><a href="/clientes/">Clientes</a></li>
+             {% if user.is_authenticated %}
+                 <li><a href="/logout/">Salir</a></li>
+             {% endif %}
+         </ul>
+     <section class="container">
+         {% block body %}{% endblock %}
+     </section>
+     <footer>{% if user.is_authenticated %}
+         Accedió como: {{user.username}}
+     {% endif %}</footer>
+     <!--JavaScript at end of body for optimized loading-->
+     <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
+     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             var elems = document.querySelectorAll('.sidenav');
+             var instances = M.Sidenav.init(elems, {});
+         });
+     </script>
+     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             {% for msg in messages %}
+                                            M.toast({html: '{{msg.message}}', classes: 'rounded'});
+             {% endfor %}});
+     </script>
+
+
+    <!-- ##### Footer Area Start ##### -->
+     {% block js %}
+
+         <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+     {% endblock %}
+
+
+    </body>
+</html>

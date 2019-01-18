@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        <!--Import materialize.css-->
+        {% load staticfiles %}
+        <link type="text/css" rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}"  media="screen,projection"/>
+        <link rel="icon" type="image/png" href="{% static '/img/avatar.jpg' %}" />
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        {% include "./header.html" %}
+
+        <section class="container">
+            {% block contenido %}{% endblock %}
+        </section>
+
+        {% include "./footer.html" %}
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems, options);
+            });
+        </script>
+    </body>
+</html>

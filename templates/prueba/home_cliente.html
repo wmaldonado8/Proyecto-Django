@@ -1,0 +1,56 @@
+{% extends "./template/master.html" %}
+
+{% block contenido %}
+
+<nav>
+    <div class="nav-wrapper z-depth-2 green accent-3">
+        <a href="#!" class="brand-logo">Clientes</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="nuevo"><i class="material-icons left">playlist_add</i>Nuevo</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="row">
+    <div class="col s12">
+        <div class="card z-depth-3">
+            <div class="card-content">
+                <span class="card-title">{{mensaje}}</span>
+                <table class="highlight responsive-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cédula</th>
+                            <th>Apellidos</th>
+                            <th>Nombres</th>
+                            <th>Genero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in clientes %}
+                        <tr>
+                            <td>
+                                <a href="editar?cedula={{item.cedula}}"><i class="material-icons left">edit</i></a>
+                                <a href="editar?cedula={{item.cedula}}"><i class="material-icons left">delete_sweep</i></a>
+
+                            </td>
+                            <td>{{item.cedula}}</td>
+                            <td>{{item.apellidos}}</td>
+                            <td>{{item.nombres}}</td>
+                            {% if item.genero == 'm' %}
+                            <td>Masculino</td>
+                            {% else %}
+                            <td>Femenino</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-action">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

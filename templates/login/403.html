@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Permiso Denegado</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta charset="utf-8">
+        <!--Import materialize.css-->
+        {% load staticfiles %}
+        <link type="text/css" rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}"  media="screen,projection"/>
+        <link rel="icon" type="image/png" href="{% static '/img/avatar-3774.jpg' %}" />
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-wrapper blue">
+                <a href="/" class="brand-logo">Cooperativa</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/login/">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="/login/">Login</a></li>
+        </ul>
+        <section class="container">
+            <h1>403 <small>PERMISO DENEGADO</small></h1>
+            <h3>No tienes los permisos necesarios para acceder a esta seccion.</h3>
+            <p>Si esto es un error consulta con el <a href="mailto:jhon.carrion@unl.edu.ec">Administrador del Sistema</a></p>
+        </section>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">keyboard_return</i></a>
+        </div>
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems, {});
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                {% for msg in messages %}
+                M.toast({html: '{{msg.message}}', classes: 'rounded'});
+                 {% endfor %}
+                 });
+        </script>
+    </body>
+</html>
